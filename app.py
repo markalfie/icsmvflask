@@ -147,7 +147,7 @@ def predict_label2(img_path2):
 
 @app.route("/<direct_path_file>", methods=['GET', 'POST'])
 def maine(direct_path_file):
-	scale_file = 'VocalSet/FULL/female6/arpeggios/belt/'+direct_path_file+'.wav'
+	scale_file = 'wavfiles/'+direct_path_file+'.wav'
 	print (scale_file)
 	filename = direct_path_file
     # load file
