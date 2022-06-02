@@ -30,13 +30,40 @@
       </div>
     </div>
   </form> -->
+  <form class="form-horizontal" action="/submit" method="post" enctype="multipart/form-data">
+  <div class="form-group">        
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+  </div>
+</form>
+
+<form class="form-horizontal" action="/recorded" method="post" enctype="multipart/form-data">
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-danger">Submit</button>
+      </div>
+    </div>
+    </form>
 
 	{% if prediction %}
-  <h2> File Name   : <i> {{filename}} </i> <i> File Name   : </i> <i> {{filename2}} </i> </h2> 
-  <img src="{{img_path}}" height="400px" width="400px"><img src="{{img_path2}}" height="400px" width="400px">
-	<h2> Your Prediction   : <i> {{prediction}} </i> <i> {{percentage_output1}}<i> <i> Your Prediction   : </i> <i> {{prediction2}} </i> <i> {{percentage_output2}} </i></h2>
-  <h2> FINAL RESULT  : <i> {{final_result}}</i>
+  <h2> File Name   : <i> {{filename}} </i></h2>
+  <img src="{{img_path}}" height="400px" width="400px">
+	<h2> Your Prediction   : <i> {{prediction}} </i></h2>
+  <h2> File Name   : <i> {{filename2}} </i></h2>
+  <img src="{{img_path2}}" height="400px" width="400px">
+	<h2> Your Prediction   : <i> {{prediction2}} </i></h2>
 	{% endif %}
+
+    <!-- {% if record_play %} 
+    <form class="form-horizontal" action="/" method="post" enctype="multipart/form-data">
+  <div class="form-group">        
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-danger">Submit</button>
+    </div>
+  </div>
+  </form>
+    {% endif %} -->
 </div>
 </body>
 </html>
