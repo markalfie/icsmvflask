@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 dic = {0 : 'CHEST', 1 : 'HEAD', 2 : 'MIX'}
 
-model = load_model('logmel_model.h5')
+model = load_model('mel_model.h5')
 model2 = load_model('mfcc_model.h5')
 
 model.make_predict_function()
@@ -23,7 +23,7 @@ def predict_label(img_path):
 	i = image.img_to_array(i)/255.0
 	i = i.reshape(1, 256,256,3)
 	p = model.predict(i)
-	print("[LOGMEL] ",p)
+	print("[mel] ",p)
 	return [p]
 
 # 2nd prediction
@@ -51,8 +51,8 @@ def maine(direct_path_file):
 	librosa.display.specshow(ps_db, x_axis='s', y_axis='log')
 	plt.tight_layout()
 	plt.axis('off')
-	plt.savefig("static/" + filename + "_logmel.png") 
-	# CHEST/f1_arpeggios_belt_c_e.wav_logmel.png
+	plt.savefig("static/" + filename + "_mel.png") 
+	# CHEST/f1_arpeggios_belt_c_e.wav_mel.png
 	plt.clf()
 
     # call log mfcc
@@ -63,12 +63,12 @@ def maine(direct_path_file):
 	plt.tight_layout()
 	plt.axis('off')
 	plt.savefig("static/" + filename + "mfcc.png") 
-	# CHEST/f1_arpeggios_belt_c_e.wav_logmel.png
+	# CHEST/f1_arpeggios_belt_c_e.wav_mel.png
 
-	img_path = "static/" + direct_path_file + "_logmel.png"
+	img_path = "static/" + direct_path_file + "_mel.png"
 	img_path2 = "static/" + direct_path_file + "mfcc.png"
 
-	#LOGMEL PREDICTION
+	#mel PREDICTION
 	p = predict_label(img_path)[0]
 	#MFCC PREDICTION
 	p3 = predict_label2(img_path2)[0]
@@ -76,7 +76,7 @@ def maine(direct_path_file):
 	print("___________________________________________")
 
 	tentative_max = float("-inf")
-	#LOGMEL PREDICTION
+	#mel PREDICTION
 	pos_idx = -1
 	for idx, val in enumerate(p[0]):
 		if val > tentative_max:
@@ -105,7 +105,7 @@ def maine(direct_path_file):
 	print("\n")
 	p1_result = tentative_max*100 
 	p3_result = tentative_max2*100
-	file1 = direct_path_file + "_logmel.png"
+	file1 = direct_path_file + "_mel.png"
 	file2 = direct_path_file + "_mfcc.png"
 
 	# CHEST AND CHEST RESULT
